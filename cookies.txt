@@ -1,0 +1,5 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+.digitaloceanspaces.com	TRUE	/	FALSE	1999999999	__cf_bm	qF5rD8cGCoGlBLXdaJNVmyQmfLhegyYOg8VA_E3sb1g-1754091030-1.0.1.1-bHifze_RcDIvkmfx.fX5H3IehAz1jYIs6ZxE5qfCJI_ZCMLxVLMiMZbBQNXcXSe7x9MW00Wl2n6qv.QJ3N4tBXk8yON70mAetwHXS300NXk
+tapcom-live.ams3.cdn.digitaloceanspaces.com	TRUE	/	FALSE	1999999999	SameSite	None
+

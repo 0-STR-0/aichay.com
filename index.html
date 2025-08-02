@@ -1,0 +1,1882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aichay - The sweetest support system</title>
+    <meta name="description" content="Order online directly from aichay">
+    <meta property="og:title" content="aichay">
+    <meta property="og:description" content="Order online directly from aichay">
+    <meta property="og:image" content="tapcom-live.ams3.cdn.digitaloceanspaces.com/media/ever-2/logos/122925336_974374832972176_4217709654031625709_n_1.jpg">
+    <meta name="theme-color" content="#f6754c">
+    <link rel="icon" href="4880855B-A545-4E9F-8606-3BF484AC5C82.jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=KWD"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', 'Cairo', sans-serif;
+            background-color: #fdebc7;
+            color: #889777;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #889777;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-primary {
+            background: #f6754c;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #fbb699;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #f6754c;
+            border: 2px solid #f6754c;
+        }
+
+        .btn-outline:hover {
+            background: #f6754c;
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f6754c 0%, #febb61 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        /* Categories Section */
+        .categories {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #889777;
+            margin-bottom: 50px;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .category-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .category-content {
+            padding: 20px;
+        }
+
+        .category-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .category-description {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+            background: #fdebc7;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-content {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #889777;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            color: #889777;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #f6754c;
+            margin-bottom: 15px;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            border: none;
+            border-radius: 50%;
+            background: #febb61;
+            color: #889777;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background: #f6754c;
+            color: white;
+        }
+
+        .quantity-display {
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        /* Cart */
+        .cart {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #f6754c;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 5px 20px rgba(246, 117, 76, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .cart:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(246, 117, 76, 0.4);
+        }
+
+        .cart-count {
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #febb61;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: #febb61;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #999;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .categories-grid,
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #fdebc7;
+            border-top: 3px solid #f6754c;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 3% auto;
+            padding: 0;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #f6754c 0%, #febb61 100%);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .modal-body {
+            padding: 30px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            color: white;
+            background: rgba(255,255,255,0.2);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.1);
+        }
+
+        /* Cart Items Styling */
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+
+        .cart-item:hover {
+            background: #fefefe;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 10px;
+        }
+
+        .cart-item-info h4 {
+            margin: 0 0 5px 0;
+            color: #889777;
+            font-size: 1.1rem;
+        }
+
+        .cart-item-info p {
+            margin: 0;
+            color: #f6754c;
+            font-weight: 600;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .cart-quantity-btn {
+            width: 30px;
+            height: 30px;
+            border: none;
+            border-radius: 50%;
+            background: #febb61;
+            color: #889777;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .cart-quantity-btn:hover {
+            background: #f6754c;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .cart-quantity-display {
+            font-weight: 600;
+            min-width: 25px;
+            text-align: center;
+            color: #889777;
+        }
+
+        .cart-remove-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .cart-remove-btn:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+        }
+
+        .cart-summary {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #889777;
+            margin-bottom: 20px;
+        }
+
+        .cart-total-amount {
+            color: #f6754c;
+            font-size: 1.5rem;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #f6754c 0%, #febb61 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(246, 117, 76, 0.3);
+        }
+
+        .checkout-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Payment Modal */
+        .payment-form {
+            display: none;
+        }
+
+        .payment-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #889777;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #f0f0f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #f6754c;
+            box-shadow: 0 0 0 3px rgba(246, 117, 76, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .payment-method {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #f0f0f0;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method:hover {
+            border-color: #f6754c;
+            background: #fefefe;
+        }
+
+        .payment-method.selected {
+            border-color: #f6754c;
+            background: #fefefe;
+        }
+
+        .payment-method-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        /* Loading States */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #f6754c;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Success Animation */
+        .success-checkmark {
+            display: none;
+            color: #4CAF50;
+            font-size: 2rem;
+            animation: bounceIn 0.6s ease;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* New styles for card input */
+        .card-input-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-icon {
+            position: absolute;
+            right: 10px;
+            font-size: 1.5rem;
+            color: #889777;
+            pointer-events: none;
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #f0f0f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            background: white;
+            cursor: pointer;
+        }
+
+        .form-group select:focus {
+            outline: none;
+            border-color: #f6754c;
+            box-shadow: 0 0 0 3px rgba(246, 117, 76, 0.1);
+        }
+
+        .form-group select option {
+            padding: 10px;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="4880855B-A545-4E9F-8606-3BF484AC5C82.jpeg" alt="aichay logo">
+                    <h1 data-translate="aichay">aichay</h1>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-outline" onclick="toggleLanguage()">
+                        <span class="material-icons">language</span>
+                        EN
+                    </button>
+                    <button class="btn btn-primary" onclick="openCart()">
+                        <span class="material-icons">shopping_cart</span>
+                        <span data-translate="Order Now">Order Now</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2 data-translate="The sweetest support system">The sweetest support system</h2>
+            <p data-translate="Discover our delicious bites">Order delicious food online and get it delivered to your doorstep</p>
+            <div class="hero-buttons">
+                <!-- Buttons removed as requested -->
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Products Section -->
+    <section class="products">
+        <div class="container">
+            <h2 class="section-title" data-translate="Our Bites">Our Delicious Bites</h2>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Button -->
+    <div class="cart" onclick="openCart()">
+        <span class="material-icons">shopping_cart</span>
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+            </div>
+            <div class="footer-bottom">
+                <p data-translate="© 2024 aichay. All rights reserved. | The sweetest support system">&copy; 2024 aichay. All rights reserved. | The sweetest support system</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeCartModal()">&times;</span>
+                <h2 data-translate="Shopping Cart">🛒 Your Shopping Cart</h2>
+            </div>
+            <div class="modal-body">
+                <div id="cartItems">
+                    <!-- Cart items will be displayed here -->
+                </div>
+                <div class="cart-summary">
+                    <div class="cart-total">
+                        <span data-translate="Total Amount:">Total Amount:</span>
+                        <span class="cart-total-amount"><span id="cartTotal">0.00</span> KWD</span>
+                    </div>
+                    <button class="checkout-btn" onclick="proceedToCheckout()" id="checkoutBtn">
+                        <span class="material-icons">payment</span>
+                        <span data-translate="Proceed to Checkout">Proceed to Checkout</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closePaymentModal()">&times;</span>
+                <h2 data-translate="💳 Secure Payment">💳 Secure Payment</h2>
+            </div>
+            <div class="modal-body">
+                <div class="payment-methods">
+                    <div class="payment-method selected" onclick="selectPaymentMethod('card')">
+                        <div class="payment-method-icon">💳</div>
+                        <div data-translate="Credit Card">Credit Card</div>
+                    </div>
+                    <div class="payment-method" onclick="selectPaymentMethod('paypal')">
+                        <div class="payment-method-icon">📱</div>
+                        <div data-translate="PayPal">PayPal</div>
+                    </div>
+                    <div class="payment-method" onclick="selectPaymentMethod('cash')">
+                        <div class="payment-method-icon">💵</div>
+                        <div data-translate="Cash on Delivery">Cash on Delivery</div>
+                    </div>
+                </div>
+
+                <div class="payment-form active" id="cardPaymentForm">
+                    <div class="form-group">
+                        <label for="cardType" data-translate="Card Type">Card Type</label>
+                        <select id="cardType" onchange="updateCardIcon()">
+                            <option value="mastercard" data-translate="💳 Mastercard">💳 Mastercard</option>
+                            <option value="visa" data-translate="💳 Visa">💳 Visa</option>
+                            <option value="amex" data-translate="💳 American Express">💳 American Express</option>
+                            <option value="discover" data-translate="💳 Discover">💳 Discover</option>
+                            <option value="other" data-translate="💳 Other">💳 Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardName" data-translate="Cardholder Name">Cardholder Name</label>
+                        <input type="text" id="cardName" placeholder="Enter cardholder name">
+                    </div>
+                    <div class="form-group">
+                        <label for="cardNumber" data-translate="Card Number">Card Number</label>
+                        <div class="card-input-container">
+                            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                            <span class="card-icon" id="cardIcon">💳</span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiryDate" data-translate="Expiry Date">Expiry Date</label>
+                            <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv" data-translate="CVV">CVV</label>
+                            <input type="text" id="cvv" placeholder="123" maxlength="3">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payment-form" id="paypalPaymentForm">
+                    <div class="form-group">
+                        <label for="paypalEmail" data-translate="PayPal Email (for order confirmation)">PayPal Email (for order confirmation)</label>
+                        <input type="email" id="paypalEmail" placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="paypalDeliveryAddress" data-translate="Delivery Address">Delivery Address</label>
+                        <input type="text" id="paypalDeliveryAddress" placeholder="Enter your full delivery address">
+                    </div>
+                    <div class="form-group">
+                        <label for="paypalPhoneNumber" data-translate="Phone Number">Phone Number</label>
+                        <input type="tel" id="paypalPhoneNumber" placeholder="+1 (555) 123-4567">
+                    </div>
+                    <div id="paypal-button-container" style="margin-top: 20px;"></div>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 10px;">
+                        <span data-translate="Click the PayPal button above to complete your payment securely.">Click the PayPal button above to complete your payment securely.</span>
+                    </p>
+                </div>
+
+                <div class="payment-form" id="cashPaymentForm">
+                    <div class="form-group">
+                        <label for="cashDeliveryAddress" data-translate="Delivery Address">Delivery Address</label>
+                        <input type="text" id="cashDeliveryAddress" placeholder="Enter your full delivery address">
+                    </div>
+                    <div class="form-group">
+                        <label for="cashPhoneNumber" data-translate="Phone Number">Phone Number</label>
+                        <input type="tel" id="cashPhoneNumber" placeholder="+1 (555) 123-4567">
+                    </div>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 10px;">
+                        <span data-translate="Pay with cash when your order is delivered.">Pay with cash when your order is delivered.</span>
+                    </p>
+                </div>
+
+                <div class="cart-summary">
+                    <div class="cart-total">
+                        <span data-translate="Order Total:">Order Total:</span>
+                        <span class="cart-total-amount"><span id="paymentTotal">0.00</span> KWD</span>
+                    </div>
+                    <button class="checkout-btn" onclick="processPayment()" id="processPaymentBtn">
+                        <span class="material-icons">lock</span>
+                        <span data-translate="Pay Securely">Pay Securely</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample products data
+        const products = [
+            {
+                id: 1,
+                name: "Strawberry Bites",
+                description: "Delicious bite-sized strawberry treats with a sweet and tangy flavor",
+                price: 8.99,
+                category: "bites",
+                image: "strawberry-bite.png"
+            },
+            {
+                id: 2,
+                name: "Blueberry Bites",
+                description: "Fresh blueberry bites with a burst of natural sweetness and antioxidants",
+                price: 9.99,
+                category: "bites",
+                image: "blueberry-bite.png"
+            }
+        ];
+
+        let cart = [];
+        // Translation objects
+        const translations = {
+            en: {
+                // Header
+                "aichay": "aichay",
+                "The sweetest support system": "The sweetest support system",
+                "Order online directly from aichay": "Order online directly from aichay",
+                
+                // Navigation
+                "Home": "Home",
+                "Menu": "Menu",
+                "About": "About",
+                "Contact": "Contact",
+                
+                // Hero section
+                "Welcome to aichay": "Welcome to aichay",
+                "Discover our delicious bites": "Discover our delicious bites",
+                "Order Now": "Order Now",
+                
+                // Products
+                "Our Bites": "Our Bites",
+                "Strawberry Bites": "Strawberry Bites",
+                "Blueberry Bites": "Blueberry Bites",
+                "Add to Cart": "Add to Cart",
+                "KWD": "KWD",
+                
+                // Cart
+                "Shopping Cart": "Shopping Cart",
+                "Your cart is empty": "Your cart is empty",
+                "Quantity": "Quantity",
+                "Remove": "Remove",
+                "Total": "Total",
+                "Checkout": "Checkout",
+                "Close": "Close",
+                
+                // Payment
+                "Payment": "Payment",
+                "Select Payment Method": "Select Payment Method",
+                "PayPal": "PayPal",
+                "Credit Card": "Credit Card",
+                "Cash on Delivery": "Cash on Delivery",
+                "Pay with PayPal": "Pay with PayPal",
+                "Pay with Card": "Pay with Card",
+                "Pay with Cash": "Pay with Cash",
+                "Card Type": "Card Type",
+                "Card Number": "Card Number",
+                "Expiry Date": "Expiry Date",
+                "CVV": "CVV",
+                "Cardholder Name": "Cardholder Name",
+                "PayPal Email": "PayPal Email",
+                "Delivery Address": "Delivery Address",
+                "Phone Number": "Phone Number",
+                "Process Payment": "Process Payment",
+                "Cancel": "Cancel",
+                
+                // Footer
+                "© 2024 aichay. All rights reserved.": "© 2024 aichay. All rights reserved.",
+                
+                // Notifications
+                "Item added to cart": "Item added to cart",
+                "Item removed from cart": "Item removed from cart",
+                "Quantity updated": "Quantity updated",
+                "Please fill all required fields": "Please fill all required fields",
+                "Payment processed successfully": "Payment processed successfully",
+                "Order confirmed": "Order confirmed",
+                "Language changed to": "Language changed to",
+                "Cart Empty": "Cart Empty",
+                "Your cart is empty": "Your cart is empty",
+                "Total Amount:": "Total Amount:",
+                "Proceed to Checkout": "Proceed to Checkout",
+
+            },
+            ar: {
+                // Header
+                "aichay": "اتش- اي",
+                "The sweetest support system": "ألذ نظام دعم",
+                "Order online directly from aichay": "اطلب عبر الإنترنت مباشرة من اتش- اي",
+                
+                // Navigation
+                "Home": "الرئيسية",
+                "Menu": "القائمة",
+                "About": "حول",
+                "Contact": "اتصل بنا",
+                
+                // Hero section
+                "Welcome to aichay": "مرحباً بك في اتش- اي",
+                "Discover our delicious bites": "اكتشف لدغاتنا اللذيذة",
+                "Order Now": "اطلب الآن",
+                
+                // Products
+                "Our Bites": "لدغاتنا",
+                "Strawberry Bites": "لدغات الفراولة",
+                "Blueberry Bites": "لدغات التوت الأزرق",
+                "Add to Cart": "أضف إلى السلة",
+                "KWD": "د.ك",
+                
+                // Cart
+                "Shopping Cart": "سلة التسوق",
+                "Your cart is empty": "سلة التسوق فارغة",
+                "Quantity": "الكمية",
+                "Remove": "إزالة",
+                "Total": "المجموع",
+                "Checkout": "إتمام الطلب",
+                "Close": "إغلاق",
+                
+                // Payment
+                "Payment": "الدفع",
+                "Select Payment Method": "اختر طريقة الدفع",
+                "PayPal": "باي بال",
+                "Credit Card": "بطاقة ائتمان",
+                "Cash on Delivery": "الدفع عند الاستلام",
+                "Pay with PayPal": "ادفع بباي بال",
+                "Pay with Card": "ادفع بالبطاقة",
+                "Pay with Cash": "ادفع نقداً",
+                "Card Type": "نوع البطاقة",
+                "Card Number": "رقم البطاقة",
+                "Expiry Date": "تاريخ الانتهاء",
+                "CVV": "رمز الأمان",
+                "Cardholder Name": "اسم حامل البطاقة",
+                "PayPal Email": "بريد باي بال الإلكتروني",
+                "Delivery Address": "عنوان التوصيل",
+                "Phone Number": "رقم الهاتف",
+                "Process Payment": "معالجة الدفع",
+                "Cancel": "إلغاء",
+                
+                // Footer
+                "© 2024 aichay. All rights reserved.": "© 2024 اتش- اي. جميع الحقوق محفوظة.",
+                
+                // Notifications
+                "Item added to cart": "تمت إضافة العنصر إلى السلة",
+                "Item removed from cart": "تمت إزالة العنصر من السلة",
+                "Quantity updated": "تم تحديث الكمية",
+                "Please fill all required fields": "يرجى ملء جميع الحقول المطلوبة",
+                "Payment processed successfully": "تمت معالجة الدفع بنجاح",
+                "Order confirmed": "تم تأكيد الطلب",
+                "Language changed to": "تم تغيير اللغة إلى",
+                "Cart Empty": "السلة فارغة",
+                "Your cart is empty": "سلة التسوق فارغة",
+                "Total Amount:": "المجموع:",
+                "Proceed to Checkout": "إتمام الطلب",
+
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        function translatePage(language) {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[language] && translations[language][key]) {
+                    element.textContent = translations[language][key];
+                }
+            });
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = language;
+            
+            // Update text direction for Arabic
+            if (language === 'ar') {
+                document.body.style.direction = 'rtl';
+                document.body.style.textAlign = 'right';
+            } else {
+                document.body.style.direction = 'ltr';
+                document.body.style.textAlign = 'left';
+            }
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProducts();
+            updateCartCount();
+            translatePage(currentLanguage); // Translate on load
+        });
+
+        function loadProducts(filter = '') {
+            const productsGrid = document.getElementById('productsGrid');
+            const filteredProducts = filter ? products.filter(p => p.category === filter) : products;
+            
+            productsGrid.innerHTML = filteredProducts.map(product => `
+                <div class="product-card">
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-content">
+                        <h3 class="product-title" data-translate="${product.name}">${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-price">${product.price.toFixed(2)} <span data-translate="KWD">KWD</span></div>
+                        <div class="product-actions">
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" onclick="decreaseQuantity(${product.id})">-</button>
+                                <span class="quantity-display" id="quantity-${product.id}">0</span>
+                                <button class="quantity-btn" onclick="increaseQuantity(${product.id})">+</button>
+                            </div>
+                            <button class="btn btn-primary" onclick="addToCart(${product.id})">
+                                <span class="material-icons">add_shopping_cart</span>
+                                <span data-translate="Add to Cart">Add</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Re-translate after loading products
+            translatePage(currentLanguage);
+        }
+
+
+
+        function increaseQuantity(productId) {
+            const quantityElement = document.getElementById(`quantity-${productId}`);
+            let quantity = parseInt(quantityElement.textContent) || 0;
+            quantityElement.textContent = quantity + 1;
+        }
+
+        function decreaseQuantity(productId) {
+            const quantityElement = document.getElementById(`quantity-${productId}`);
+            let quantity = parseInt(quantityElement.textContent) || 0;
+            if (quantity > 0) {
+                quantityElement.textContent = quantity - 1;
+            }
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const quantity = parseInt(document.getElementById(`quantity-${productId}`).textContent) || 0;
+            
+            if (quantity > 0) {
+                const existingItem = cart.find(item => item.id === productId);
+                if (existingItem) {
+                    existingItem.quantity += quantity;
+                } else {
+                    cart.push({
+                        ...product,
+                        quantity: quantity
+                    });
+                }
+                
+                document.getElementById(`quantity-${productId}`).textContent = '0';
+                updateCartCount();
+                showNotification('Item added to cart!');
+            }
+        }
+
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').textContent = totalItems;
+        }
+
+        function openCart() {
+            const modal = document.getElementById('cartModal');
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = `<p data-translate="Your cart is empty">Your cart is empty</p>`;
+                cartTotal.textContent = '0.00';
+                checkoutBtn.disabled = true;
+                checkoutBtn.innerHTML = '<span class="material-icons">shopping_cart</span><span data-translate="Cart Empty">Cart Empty</span>';
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <h4 data-translate="${item.name}">${item.name}</h4>
+                            <p>${item.price.toFixed(2)} <span data-translate="KWD">KWD</span> x ${item.quantity}</p>
+                        </div>
+                        <div class="cart-item-controls">
+                            <button class="cart-quantity-btn" onclick="updateCartItemQuantity(${item.id}, ${item.quantity - 1})">-</button>
+                            <span class="cart-quantity-display">${item.quantity}</span>
+                            <button class="cart-quantity-btn" onclick="updateCartItemQuantity(${item.id}, ${item.quantity + 1})">+</button>
+                            <button class="cart-remove-btn" onclick="removeFromCart(${item.id})" data-translate="Remove">Remove</button>
+                        </div>
+                    </div>
+                `).join('');
+                
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                cartTotal.textContent = total.toFixed(2);
+                checkoutBtn.disabled = false;
+                checkoutBtn.innerHTML = '<span class="material-icons">payment</span><span data-translate="Checkout">Proceed to Checkout</span>';
+            }
+            
+            modal.style.display = 'block';
+        }
+
+        function closeCartModal() {
+            document.getElementById('cartModal').style.display = 'none';
+        }
+
+        function updateCartItemQuantity(productId, newQuantity) {
+            if (newQuantity <= 0) {
+                removeFromCart(productId);
+            } else {
+                const item = cart.find(item => item.id === productId);
+                if (item) {
+                    item.quantity = newQuantity;
+                    updateCartCount();
+                    openCart(); // Refresh cart display
+                }
+            }
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartCount();
+            openCart(); // Refresh cart display
+        }
+
+        // Payment functionality
+        let selectedPaymentMethod = 'card';
+
+        function proceedToCheckout() {
+            if (cart.length === 0) {
+                showNotification('Your cart is empty!', 'error');
+                return;
+            }
+            
+            closeCartModal();
+            openPaymentModal();
+        }
+
+        function openPaymentModal() {
+            const modal = document.getElementById('paymentModal');
+            const paymentTotal = document.getElementById('paymentTotal');
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            paymentTotal.textContent = total.toFixed(2);
+            
+            // Reset payment forms
+            document.getElementById('cardName').value = '';
+            document.getElementById('cardNumber').value = '';
+            document.getElementById('expiryDate').value = '';
+            document.getElementById('cvv').value = '';
+            document.getElementById('paypalEmail').value = '';
+            document.getElementById('paypalDeliveryAddress').value = '';
+            document.getElementById('paypalPhoneNumber').value = '';
+            document.getElementById('cashDeliveryAddress').value = '';
+            document.getElementById('cashPhoneNumber').value = '';
+            
+            // Clear PayPal button container
+            const paypalContainer = document.getElementById('paypal-button-container');
+            if (paypalContainer) {
+                paypalContainer.innerHTML = '';
+            }
+            
+            modal.style.display = 'block';
+            
+            // Initialize PayPal buttons if PayPal is selected
+            if (selectedPaymentMethod === 'paypal') {
+                setTimeout(() => {
+                    initializePayPalButtons();
+                }, 100);
+            }
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        function selectPaymentMethod(method) {
+            selectedPaymentMethod = method;
+            
+            // Update payment method selection
+            document.querySelectorAll('.payment-method').forEach(el => el.classList.remove('selected'));
+            event.target.closest('.payment-method').classList.add('selected');
+            
+            // Show/hide payment forms
+            document.querySelectorAll('.payment-form').forEach(form => form.classList.remove('active'));
+            document.getElementById(method + 'PaymentForm').classList.add('active');
+            
+            // Initialize PayPal buttons if PayPal is selected
+            if (method === 'paypal') {
+                setTimeout(() => {
+                    initializePayPalButtons();
+                }, 100);
+            }
+        }
+
+        function processPayment() {
+            const processBtn = document.getElementById('processPaymentBtn');
+            const originalText = processBtn.innerHTML;
+            
+            // Show loading state
+            processBtn.innerHTML = '<span class="loading-spinner"></span> Processing Payment...';
+            processBtn.disabled = true;
+            
+            if (selectedPaymentMethod === 'paypal') {
+                // Process PayPal payment
+                processPayPalPayment();
+            } else if (selectedPaymentMethod === 'card') {
+                // Process card payment
+                processCardPayment();
+            } else if (selectedPaymentMethod === 'cash') {
+                // Process cash on delivery
+                processCashPayment();
+            }
+        }
+
+        function processPayPalPayment() {
+            const paypalEmail = document.getElementById('paypalEmail').value;
+            const deliveryAddress = document.getElementById('paypalDeliveryAddress').value;
+            const phoneNumber = document.getElementById('paypalPhoneNumber').value;
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            if (!paypalEmail || !paypalEmail.includes('@')) {
+                showNotification('Please enter a valid email address for order confirmation', 'error');
+                resetPaymentButton();
+                return;
+            }
+
+            if (!deliveryAddress) {
+                showNotification('Please enter your delivery address', 'error');
+                resetPaymentButton();
+                return;
+            }
+
+            if (!phoneNumber) {
+                showNotification('Please enter your phone number', 'error');
+                resetPaymentButton();
+                return;
+            }
+
+            // Initialize PayPal buttons
+            initializePayPalButtons();
+        }
+
+        // Send payment notification to server
+        async function sendPaymentNotification(orderDetails) {
+            try {
+                const response = await fetch('/api/payment-notification', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        orderId: orderDetails.orderId,
+                        paymentId: orderDetails.paymentId,
+                        amount: orderDetails.total.toFixed(2),
+                        currency: 'KWD',
+                        paymentMethod: orderDetails.paymentMethod,
+                        customerEmail: orderDetails.customerEmail,
+                        deliveryAddress: orderDetails.deliveryAddress,
+                        phoneNumber: orderDetails.phoneNumber,
+                        items: orderDetails.items,
+                        orderDate: orderDetails.orderDate
+                    })
+                });
+
+                if (response.ok) {
+                    console.log('Payment notification sent successfully');
+                } else {
+                    console.error('Failed to send payment notification');
+                }
+            } catch (error) {
+                console.error('Error sending payment notification:', error);
+            }
+        }
+
+        function initializePayPalButtons() {
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            paypal.Buttons({
+                createOrder: function(data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                currency_code: 'KWD',
+                                value: total.toFixed(2)
+                            },
+                            description: 'aichay Food Order',
+                            custom_id: 'aichay_order_' + Date.now(),
+                            items: cart.map(item => ({
+                                name: item.name,
+                                quantity: item.quantity.toString(),
+                                unit_amount: {
+                                    currency_code: 'KWD',
+                                    value: item.price.toFixed(2)
+                                }
+                            }))
+                        }],
+                        application_context: {
+                            shipping_preference: 'GET_FROM_FILE'
+                        }
+                    });
+                },
+                onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(details) {
+                        // Payment successful
+                        showNotification('Payment successful! Your order has been placed.', 'success');
+                        
+                        // Save order details
+                        const orderDetails = {
+                            orderId: data.orderID,
+                            paymentId: details.purchase_units[0].payments.captures[0].id,
+                            customerEmail: document.getElementById('paypalEmail').value,
+                            deliveryAddress: document.getElementById('paypalDeliveryAddress').value,
+                            phoneNumber: document.getElementById('paypalPhoneNumber').value,
+                            items: cart,
+                            total: total,
+                            paymentMethod: 'PayPal',
+                            orderDate: new Date().toISOString()
+                        };
+                        
+                        // Send payment notification to server
+                        sendPaymentNotification(orderDetails);
+                        
+                        // Clear cart and close modal
+                        cart = [];
+                        updateCartCount();
+                        closePaymentModal();
+                        resetPaymentButton();
+                        
+                        // Show order confirmation
+                        showOrderConfirmation(orderDetails);
+                    });
+                },
+                onError: function(err) {
+                    showNotification('Payment failed. Please try again.', 'error');
+                    resetPaymentButton();
+                }
+            }).render('#paypal-button-container');
+        }
+
+        function showOrderConfirmation(orderDetails) {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>✅ Order Confirmed!</h2>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Order ID:</strong> ${orderDetails.orderId}</p>
+                        <p><strong>Payment ID:</strong> ${orderDetails.paymentId}</p>
+                        <p><strong>Total:</strong> ${orderDetails.total.toFixed(2)} KWD</p>
+                        <p><strong>Delivery Address:</strong> ${orderDetails.deliveryAddress}</p>
+                        <p><strong>Phone:</strong> ${orderDetails.phoneNumber}</p>
+                        <p>Thank you for your order! We'll contact you soon with delivery details.</p>
+                        <button class="btn btn-primary" onclick="this.parentElement.parentElement.parentElement.remove()">Close</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        function processCardPayment() {
+            const cardName = document.getElementById('cardName').value;
+            const cardNumber = document.getElementById('cardNumber').value;
+            const expiryDate = document.getElementById('expiryDate').value;
+            const cvv = document.getElementById('cvv').value;
+            const cardType = document.getElementById('cardType').value;
+            
+            // Validate all fields are filled
+            if (!cardName || !cardNumber || !expiryDate || !cvv) {
+                showNotification('Please fill in all card details', 'error');
+                resetPaymentButton();
+                return;
+            }
+
+            // Validate card number format
+            const cleanCardNumber = cardNumber.replace(/\s/g, '');
+            if (!isValidCardNumber(cleanCardNumber)) {
+                showNotification('Please enter a valid card number', 'error');
+                resetPaymentButton();
+                return;
+            }
+
+            // Validate card type matches number
+            const detectedCardType = detectCardType(cleanCardNumber);
+            if (detectedCardType !== cardType && cardType !== 'other') {
+                showNotification(`This appears to be a ${detectedCardType} card, not ${cardType}`, 'error');
+                resetPaymentButton();
+                return;
+            }
+
+            // Validate expiry date
+            if (!isValidExpiryDate(expiryDate)) {
+                showNotification('Please enter a valid expiry date (MM/YY)', 'error');
+                resetPaymentButton();
+                return;
+            }
+
+            // Validate CVV
+            if (!isValidCVV(cvv, detectedCardType)) {
+                showNotification('Please enter a valid CVV', 'error');
+                resetPaymentButton();
+                return;
+            }
+
+            // Simulate card payment processing
+            setTimeout(() => {
+                const processBtn = document.getElementById('processPaymentBtn');
+                processBtn.innerHTML = '<span class="success-checkmark">✓</span> Payment Successful!';
+                
+                showNotification('Card payment processed successfully! Your order is being prepared.', 'success');
+                
+                // Create order details for notification
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const orderDetails = {
+                    orderId: 'CARD_' + Date.now(),
+                    paymentId: 'CARD_PAY_' + Date.now(),
+                    customerEmail: 'customer@example.com', // Card payments don't collect email
+                    deliveryAddress: 'N/A', // Card payments don't collect address
+                    phoneNumber: 'N/A', // Card payments don't collect phone
+                    items: cart,
+                    total: total,
+                    paymentMethod: 'Credit Card',
+                    orderDate: new Date().toISOString()
+                };
+                
+                // Send payment notification to server
+                sendPaymentNotification(orderDetails);
+                
+                // Clear cart
+                cart = [];
+                updateCartCount();
+                
+                // Close payment modal after delay
+                setTimeout(() => {
+                    closePaymentModal();
+                    resetPaymentButton();
+                }, 2000);
+                
+            }, 3000);
+        }
+
+        // Card validation functions
+        function isValidCardNumber(cardNumber) {
+            // Remove spaces and check if it's numeric
+            if (!/^\d+$/.test(cardNumber)) {
+                return false;
+            }
+
+            // Check length (13-19 digits)
+            if (cardNumber.length < 13 || cardNumber.length > 19) {
+                return false;
+            }
+
+            // Luhn algorithm validation
+            let sum = 0;
+            let isEven = false;
+
+            // Loop through values starting from the rightmost side
+            for (let i = cardNumber.length - 1; i >= 0; i--) {
+                let digit = parseInt(cardNumber.charAt(i));
+
+                if (isEven) {
+                    digit *= 2;
+                    if (digit > 9) {
+                        digit -= 9;
+                    }
+                }
+
+                sum += digit;
+                isEven = !isEven;
+            }
+
+            return (sum % 10) === 0;
+        }
+
+        function detectCardType(cardNumber) {
+            // Visa: starts with 4
+            if (/^4/.test(cardNumber)) {
+                return 'visa';
+            }
+            // Mastercard: starts with 51-55 or 2221-2720
+            if (/^5[1-5]/.test(cardNumber) || /^2[2-7][2-9][0-9]/.test(cardNumber)) {
+                return 'mastercard';
+            }
+            // American Express: starts with 34 or 37
+            if (/^3[47]/.test(cardNumber)) {
+                return 'amex';
+            }
+            // Discover: starts with 6011, 622126-622925, 644-649, 65
+            if (/^6(?:011|5)/.test(cardNumber) || /^622(?:12[6-9]|1[3-9]|[2-8]|9[0-1][0-9]|92[0-5])/.test(cardNumber) || /^64[4-9]/.test(cardNumber)) {
+                return 'discover';
+            }
+            
+            return 'other';
+        }
+
+        function isValidExpiryDate(expiryDate) {
+            // Check format MM/YY
+            if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
+                return false;
+            }
+
+            const [month, year] = expiryDate.split('/');
+            const currentDate = new Date();
+            const currentYear = currentDate.getFullYear() % 100; // Get last 2 digits
+            const currentMonth = currentDate.getMonth() + 1; // getMonth() returns 0-11
+
+            const expMonth = parseInt(month);
+            const expYear = parseInt(year);
+
+            // Check if month is valid (1-12)
+            if (expMonth < 1 || expMonth > 12) {
+                return false;
+            }
+
+            // Check if card is expired
+            if (expYear < currentYear || (expYear === currentYear && expMonth < currentMonth)) {
+                return false;
+            }
+
+            return true;
+        }
+
+        function isValidCVV(cvv, cardType) {
+            // Remove any spaces
+            const cleanCVV = cvv.replace(/\s/g, '');
+            
+            // Check if numeric
+            if (!/^\d+$/.test(cleanCVV)) {
+                return false;
+            }
+
+            // Check length based on card type
+            if (cardType === 'amex') {
+                return cleanCVV.length === 4;
+            } else {
+                return cleanCVV.length === 3;
+            }
+        }
+
+        function processCashPayment() {
+            const deliveryAddress = document.getElementById('cashDeliveryAddress').value;
+            const phoneNumber = document.getElementById('cashPhoneNumber').value;
+            
+            if (!deliveryAddress || !phoneNumber) {
+                showNotification('Please fill in delivery address and phone number', 'error');
+                resetPaymentButton();
+                return;
+            }
+
+            // Simulate cash payment processing
+            setTimeout(() => {
+                const processBtn = document.getElementById('processPaymentBtn');
+                processBtn.innerHTML = '<span class="success-checkmark">✓</span> Order Confirmed!';
+                
+                showNotification('Cash on delivery order confirmed! We will contact you soon.', 'success');
+                
+                // Create order details for notification
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const orderDetails = {
+                    orderId: 'CASH_' + Date.now(),
+                    paymentId: 'CASH_ORDER_' + Date.now(),
+                    customerEmail: 'customer@example.com', // Cash payments don't collect email
+                    deliveryAddress: deliveryAddress,
+                    phoneNumber: phoneNumber,
+                    items: cart,
+                    total: total,
+                    paymentMethod: 'Cash on Delivery',
+                    orderDate: new Date().toISOString()
+                };
+                
+                // Send payment notification to server
+                sendPaymentNotification(orderDetails);
+                
+                // Clear cart
+                cart = [];
+                updateCartCount();
+                
+                // Close payment modal after delay
+                setTimeout(() => {
+                    closePaymentModal();
+                    resetPaymentButton();
+                }, 2000);
+                
+            }, 2000);
+        }
+
+        function resetPaymentButton() {
+            const processBtn = document.getElementById('processPaymentBtn');
+            processBtn.innerHTML = '<span class="material-icons">lock</span><span data-translate="Pay Securely">Pay Securely</span>';
+            processBtn.disabled = false;
+        }
+
+        // Card number formatting
+        document.addEventListener('DOMContentLoaded', function() {
+            const cardNumber = document.getElementById('cardNumber');
+            if (cardNumber) {
+                cardNumber.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+                    let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+                    e.target.value = formattedValue;
+                });
+            }
+
+            const expiryDate = document.getElementById('expiryDate');
+            if (expiryDate) {
+                expiryDate.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length >= 2) {
+                        value = value.slice(0, 2) + '/' + value.slice(2, 4);
+                    }
+                    e.target.value = value;
+                });
+            }
+
+            const cvv = document.getElementById('cvv');
+            if (cvv) {
+                cvv.addEventListener('input', function(e) {
+                    e.target.value = e.target.value.replace(/\D/g, '');
+                });
+            }
+        });
+
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'en' ? 'ar' : 'en';
+            const langButton = document.querySelector('.header-actions .btn-outline');
+            langButton.innerHTML = `<span class="material-icons">language</span> ${currentLanguage.toUpperCase()}`;
+            
+            // Translate the page
+            translatePage(currentLanguage);
+            
+            showNotification(`${translations[currentLanguage]["Language changed to"]} ${currentLanguage.toUpperCase()}`);
+        }
+
+        function checkout() {
+            proceedToCheckout();
+        }
+
+        function showNotification(message, type = 'success') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#4CAF50' : '#f44336'};
+                color: white;
+                padding: 15px 25px;
+                border-radius: 5px;
+                z-index: 3000;
+                animation: slideIn 0.3s ease;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const cartModal = document.getElementById('cartModal');
+            const paymentModal = document.getElementById('paymentModal');
+            
+            if (event.target === cartModal) {
+                closeCartModal();
+            }
+            if (event.target === paymentModal) {
+                closePaymentModal();
+            }
+        }
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Function to update card icon based on selection
+        function updateCardIcon() {
+            const cardType = document.getElementById('cardType').value;
+            const cardIcon = document.getElementById('cardIcon');
+            switch (cardType) {
+                case 'mastercard':
+                    cardIcon.textContent = '💳';
+                    break;
+                case 'visa':
+                    cardIcon.textContent = '💳';
+                    break;
+                case 'amex':
+                    cardIcon.textContent = '💳';
+                    break;
+                case 'discover':
+                    cardIcon.textContent = '💳';
+                    break;
+                case 'other':
+                    cardIcon.textContent = '💳';
+                    break;
+                default:
+                    cardIcon.textContent = '💳'; // Default icon
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
+
+
